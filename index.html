@@ -368,7 +368,12 @@
       <button class="nav-item" data-tab="builder">🤖&nbsp; Bot Builder</button>
       <button class="nav-item" data-tab="charts">📈&nbsp; Charts</button>
       <button class="nav-item" data-tab="trading">🧾&nbsp; Trading History</button>
+      <button class="nav-item" data-tab="signals">🔔&nbsp; Signals</button>
+      <button class="nav-item" data-tab="statistics">📊&nbsp; Statistics</button>
       <button class="nav-item" data-tab="riskcalc">🧮&nbsp; Risk Calculator</button>
+      <button class="nav-item" data-tab="account">👤&nbsp; Account</button>
+      <button class="nav-item" data-tab="auth">🔐&nbsp; Login / Register</button>
+      <button class="nav-item" data-tab="admin">🛠️&nbsp; Admin Panel</button>
       <div class="sidebar-foot">
         Unofficial personal tool.<br>Not affiliated with Deriv.<br><br>
         Synthetic indices carry high risk of rapid loss. Trade only what you can afford to lose.
@@ -403,7 +408,91 @@
             </table>
           </div>
         </section>
+        </section>
 
+        <!-- SIGNALS -->
+        <section class="section" id="sec-signals">
+          <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+              <div class="panel-title" style="margin-bottom:0;">Signals</div>
+              <div style="font-size:12px; color:var(--muted);">Subscribe to provider signals or add your own</div>
+            </div>
+            <table>
+              <thead><tr><th>Provider</th><th>Signal</th><th>Symbol</th><th>Action</th></tr></thead>
+              <tbody id="signalsBody">
+                <tr><td>ExampleSignalBot</td><td>Volatility spike (short)</td><td>R_75</td><td><button class="btn" data-sig="1">Subscribe</button></td></tr>
+                <tr><td>CommunityPicks</td><td>Momentum on BOOM500</td><td>BOOM500</td><td><button class="btn" data-sig="2">Subscribe</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- STATISTICS -->
+        <section class="section" id="sec-statistics">
+          <div class="grid grid-4" style="margin-bottom:14px;">
+            <div class="card"><h3>Overall Volume</h3><div class="stat" id="statVolume">—</div><div class="stat-sub">Last 24 hours</div></div>
+            <div class="card"><h3>Avg Win</h3><div class="stat jade" id="statAvgWin">—</div><div class="stat-sub">Average winners</div></div>
+            <div class="card"><h3>Avg Loss</h3><div class="stat coral" id="statAvgLoss">—</div><div class="stat-sub">Average losers</div></div>
+            <div class="card"><h3>Subscribers</h3><div class="stat" id="statSubscribers">—</div><div class="stat-sub">Signal subscriptions</div></div>
+          </div>
+          <div class="card">
+            <div class="panel-title">Recent analytics</div>
+            <div style="font-size:13px; color:var(--faint);">Placeholder analytics — connect a backend or tracking service to populate real metrics.</div>
+          </div>
+        </section>
+
+        <!-- ACCOUNT SETTINGS -->
+        <section class="section" id="sec-account">
+          <div class="card" style="max-width:720px;">
+            <div class="panel-title">Account settings</div>
+            <div class="field"><label>Display name</label><input id="acctDisplayName" placeholder="Your name"></div>
+            <div class="field"><label>Email</label><input id="acctEmail" placeholder="you@example.com"></div>
+            <div class="field"><label>Notification preferences</label>
+              <select id="acctNotify"><option value="all">All</option><option value="signals">Signals only</option><option value="none">None</option></select>
+            </div>
+            <div style="display:flex; gap:10px; margin-top:10px;"><button class="btn btn-gold" id="acctSaveBtn">Save</button><button class="btn btn-ghost" id="acctResetBtn">Reset</button></div>
+            <div class="stat-sub" style="margin-top:8px; color:var(--faint);">Some settings are stored locally as placeholders.</div>
+          </div>
+        </section>
+
+        <!-- AUTH: Login / Register -->
+        <section class="section" id="sec-auth">
+          <div class="grid grid-2">
+            <div class="card">
+              <div class="panel-title">Login</div>
+              <div class="field"><label>Email</label><input id="loginEmail" placeholder="you@example.com"></div>
+              <div class="field"><label>Password</label><input id="loginPass" type="password"></div>
+              <div style="display:flex; gap:10px; margin-top:10px;"><button class="btn btn-gold" id="doLogin">Login</button><button class="btn" id="openDerivConnect">Link Deriv</button></div>
+            </div>
+            <div class="card">
+              <div class="panel-title">Register</div>
+              <div class="field"><label>Display name</label><input id="regName" placeholder="Your name"></div>
+              <div class="field"><label>Email</label><input id="regEmail" placeholder="you@example.com"></div>
+              <div class="field"><label>Password</label><input id="regPass" type="password"></div>
+              <div style="display:flex; gap:10px; margin-top:10px;"><button class="btn btn-gold" id="doRegister">Create account</button></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ADMIN PANEL -->
+        <section class="section" id="sec-admin">
+          <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+              <div class="panel-title">Admin Panel</div>
+              <div style="font-size:12px; color:var(--muted);">Admin placeholders: manage users, subscriptions, signals, analytics, notifications</div>
+            </div>
+            <div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:12px;">
+              <button class="btn" id="adminUsersBtn">Manage users</button>
+              <button class="btn" id="adminSubsBtn">Manage subscriptions</button>
+              <button class="btn" id="adminSignalsBtn">Manage signals/content</button>
+              <button class="btn" id="adminAnalyticsBtn">View analytics</button>
+              <button class="btn" id="adminNotifyBtn">Send notification</button>
+            </div>
+            <div id="adminArea" style="margin-top:12px;">
+              <div style="color:var(--faint);">Select an admin action above to view controls.</div>
+            </div>
+          </div>
+        </section>
         <!-- BOT BUILDER -->
         <section class="section" id="sec-builder">
           <div class="risk-banner">⚠️ Martingale increases your stake after every loss. A short losing streak can multiply your stake many times over. Set a stop‑loss.</div>
@@ -1080,6 +1169,93 @@
   restoreLastConfig();
 
   function fmt(n){ return Number(n).toFixed(2); }
+
+  /* ---------------- New: Signals / Account / Auth / Admin handlers ---------------- */
+  // Signals subscribe (delegated)
+  const sigBody = $('signalsBody');
+  if(sigBody){
+    sigBody.addEventListener('click', (ev)=>{
+      const btn = ev.target.closest('button');
+      if(!btn) return;
+      const id = btn.dataset.sig;
+      btn.disabled = true; btn.textContent = 'Subscribed';
+      logLine('Subscribed to signal provider #' + id, 'l-info');
+    });
+  }
+
+  // Account settings
+  const acctSave = $('acctSaveBtn');
+  const acctReset = $('acctResetBtn');
+  if(acctSave){
+    acctSave.addEventListener('click', ()=>{
+      try{
+        localStorage.setItem('acctDisplayName', $('acctDisplayName').value||'');
+        localStorage.setItem('acctEmail', $('acctEmail').value||'');
+        localStorage.setItem('acctNotify', $('acctNotify').value||'all');
+        logLine('Account settings saved locally.', 'l-info');
+      }catch(e){ logLine('Failed to save settings.','l-loss'); }
+    });
+  }
+  if(acctReset){
+    acctReset.addEventListener('click', ()=>{
+      $('acctDisplayName').value = '';
+      $('acctEmail').value = '';
+      $('acctNotify').value = 'all';
+      localStorage.removeItem('acctDisplayName');
+      localStorage.removeItem('acctEmail');
+      localStorage.removeItem('acctNotify');
+      logLine('Account settings reset.', 'l-info');
+    });
+  }
+  // restore
+  try{
+    if(localStorage.getItem('acctDisplayName')) $('acctDisplayName').value = localStorage.getItem('acctDisplayName');
+    if(localStorage.getItem('acctEmail')) $('acctEmail').value = localStorage.getItem('acctEmail');
+    if(localStorage.getItem('acctNotify')) $('acctNotify').value = localStorage.getItem('acctNotify');
+  }catch(e){}
+
+  // Auth (simple client-side placeholder)
+  if($('doLogin')){
+    $('doLogin').addEventListener('click', ()=>{
+      const email = $('loginEmail').value.trim();
+      if(!email){ logLine('Enter email to login.','l-loss'); return; }
+      logLine('Logged in (local demo) as '+email, 'l-info');
+      // mark a simple client-side 'user' record
+      try{ localStorage.setItem('demo_user_email', email); }catch(e){}
+    });
+  }
+  if($('doRegister')){
+    $('doRegister').addEventListener('click', ()=>{
+      const email = $('regEmail').value.trim();
+      const name = $('regName').value.trim();
+      if(!email || !name){ logLine('Fill name and email to register.','l-loss'); return; }
+      logLine('Created demo account for '+name+' ('+email+')','l-info');
+      try{ localStorage.setItem('demo_user_email', email); localStorage.setItem('demo_user_name', name); }catch(e){}
+    });
+  }
+  if($('openDerivConnect')){
+    $('openDerivConnect').addEventListener('click', ()=> $('connectModalBg').classList.add('show'));
+  }
+
+  // Admin stubs
+  const adminArea = $('adminArea');
+  function renderAdminUsers(){
+    if(!adminArea) return;
+    adminArea.innerHTML = '<h3 style="margin-top:0;">Users</h3><table style="width:100%"><thead><tr><th>Email</th><th>Name</th><th>Action</th></tr></thead><tbody>'+
+      '<tr><td>user@example.com</td><td>Demo User</td><td><button class="btn" data-act="suspend">Suspend</button></td></tr></tbody></table>';
+    adminArea.querySelectorAll('button[data-act]').forEach(b=>b.addEventListener('click', ()=>{ logLine('User action: '+b.dataset.act,'l-info'); }));
+  }
+  function renderAdminSubs(){ if(!adminArea) return; adminArea.innerHTML = '<div class="panel-title">Subscriptions</div><div style="color:var(--faint);">Manage subscription plans (placeholder).</div>'; }
+  function renderAdminSignals(){ if(!adminArea) return; adminArea.innerHTML = '<div class="panel-title">Signals / Content</div><div style="color:var(--faint);">Create, edit or remove published signals (placeholder).</div>'; }
+  function renderAdminAnalytics(){ if(!adminArea) return; adminArea.innerHTML = '<div class="panel-title">Platform analytics</div><div style="color:var(--faint);">This area can show totals, charts, and retention metrics when connected to backend analytics.</div>'; }
+  function renderAdminNotify(){ if(!adminArea) return; adminArea.innerHTML = '<div class="panel-title">Send notification</div><div class="field"><label>Message</label><input id="adminNotifText"></div><div style="margin-top:10px;"><button class="btn btn-gold" id="sendNotifBtn">Send</button></div>';
+    setTimeout(()=>{ const sb = $('sendNotifBtn'); if(sb) sb.addEventListener('click', ()=>{ const msg = $('adminNotifText').value||'(empty)'; logLine('Admin notification sent: '+msg,'l-info'); }); },10);
+  }
+  if($('adminUsersBtn')) $('adminUsersBtn').addEventListener('click', renderAdminUsers);
+  if($('adminSubsBtn')) $('adminSubsBtn').addEventListener('click', renderAdminSubs);
+  if($('adminSignalsBtn')) $('adminSignalsBtn').addEventListener('click', renderAdminSignals);
+  if($('adminAnalyticsBtn')) $('adminAnalyticsBtn').addEventListener('click', renderAdminAnalytics);
+  if($('adminNotifyBtn')) $('adminNotifyBtn').addEventListener('click', renderAdminNotify);
 
 })();
 </script>
